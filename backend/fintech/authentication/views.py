@@ -6,10 +6,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
     permission_classes = (AllowAny, )
+    queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
-class MyObtainTokenPairView(TokenObtainPairView):
+class AuthObtainTokenPairView(TokenObtainPairView):
     permission_classes = (AllowAny,)
     serializer_class = AuthTokenObtainPairSerializer
