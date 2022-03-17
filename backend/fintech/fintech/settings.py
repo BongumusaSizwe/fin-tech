@@ -70,6 +70,9 @@ MIDDLEWARE = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'users.serializers.CustomRegisterSerializer'
+}
 
 AUTHENTICATION_BACKENDS = (
  # Needed to login by username in Django admin, regardless of `allauth`
