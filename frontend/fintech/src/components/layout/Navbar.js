@@ -14,7 +14,7 @@ const Navbar = () => {
         <nav>
             <h1>Fin-Tech</h1>
             <ul>
-                {isAuth ===false ? (
+                {isAuth ===true ? (
                     <Fragment>
                         {' '}
                         <li>

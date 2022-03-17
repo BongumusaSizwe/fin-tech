@@ -31,9 +31,9 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.key) {
+                if (data.access) {
                     localStorage.clear();
-                    localStorage.setItem('token', data.key);
+                    localStorage.setItem('token', data.access);
                     window.location.replace('https://localhost:3000/dashboard');
                 } else {
                     setEmail('');

@@ -9,7 +9,7 @@ const Dashboard = () => {
             window.location.replace('http://localhost:3000/login')
         }
         else{
-            fetch('http://127.0.0.1:8000/authorization/user/',{
+            fetch('http://127.0.0.1:8000/authentication/user/',{
                 method: 'GET',
                 headers: {
                     'Content-Type':'application/json',
@@ -18,6 +18,7 @@ const Dashboard = () => {
             })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 setUserEmail(data.email);
                 setLoading(false);
             });
