@@ -26,7 +26,7 @@ const Signup =() => {
             confirm_password: confirm_password,
         };
 
-        fetch('http://127.0.0.1:8000/authentication/register/',{
+        fetch('http://127.0.0.1:8000/api/users/auth/register/',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

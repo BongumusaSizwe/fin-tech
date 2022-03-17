@@ -18,11 +18,11 @@ const Login = () => {
         e.preventDefault();
 
         const user = {
-            username: email,
+            email: email,
             password: password
         };
 
-        fetch('http://127.0.0.1:8000/authentication/login/', {
+        fetch('http://127.0.0.1:8000/api/users/auth/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,9 +31,9 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.access) {
+                if (data.key) {
                     localStorage.clear();
-                    localStorage.setItem('token', data.access);
+                    localStorage.setItem('token', data.key);
                     window.location.replace('https://localhost:3000/dashboard');
                 } else {
                     setEmail('');
@@ -50,9 +50,9 @@ const Login = () => {
             {errors === true && <h2>Check your login details carefully.</h2>}
             {loading === false && (
                 <form onSubmit={onSubmit}>
-                    <label htmlFor='username'>Email: </label><br />
+                    <label htmlFor='email'>Email: </label><br />
                     <input
-                        name='username'
+                        name='email'
                         type='email'
                         value={email}
                         required
@@ -76,4 +76,3 @@ const Login = () => {
 };
 
 export default Login;
-

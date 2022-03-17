@@ -9,7 +9,7 @@ const Dashboard = () => {
             window.location.replace('http://localhost:3000/login')
         }
         else{
-            fetch('http://127.0.0.1:8000/authentication/user/',{
+            fetch('http://127.0.0.1:8000/api/users/auth/user/',{
                 method: 'GET',
                 headers: {
                     'Content-Type':'application/json',
@@ -19,7 +19,7 @@ const Dashboard = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setUserEmail(data.email);
+                setUserEmail(data.first_name);
                 setLoading(false);
             });
         }
@@ -30,7 +30,7 @@ const Dashboard = () => {
             {loading === false && (
                 <Fragment>
                     <h1>Dashboard</h1>
-                    <h2>Hello {userEmail}!</h2>
+                    <h2>Hello, {userEmail}</h2>
                 </Fragment>
             )}
         </div>
