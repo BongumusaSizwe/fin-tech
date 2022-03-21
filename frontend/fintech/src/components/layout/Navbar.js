@@ -1,43 +1,37 @@
-import React, {useState, useEffect, Fragment} from 'react';
-import { Link } from 'react-router-dom';
+// import React, { useState, useEffect, Fragment } from 'react';
+// import { Nav, Navbar, Container } from 'react-bootstrap';
 
-const Navbar = () => {
-    const [isAuth, setIsAuth] = useState(false);
 
-    useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
-            setIsAuth(true);
-        }
-    }, []);
+// const MyNavbar = () => {
+//     const [isAuth, setIsAuth] = useState(false);
 
-    return (
-        <nav>
-            <h1>Fin-Tech</h1>
-            <ul>
-                {isAuth ===true ? (
-                    <Fragment>
-                        {' '}
-                        <li>
-                            <Link to='/dashboard'>Dashboard</Link>
-                        </li>
-                        <li>
-                            <Link to='/logout'>Logout</Link>
-                        </li>
-                    </Fragment>
-                ) : (
-                    <Fragment>
-                        {' '}
-                        <li>
-                            <Link to='/login'>Login</Link>
-                        </li>
-                        <li>
-                            <Link to='/signup'>Register</Link>
-                        </li>
-                    </Fragment>
-                )}
-            </ul>
-        </nav>
-    );
-};
+//     useEffect(() => {
+//         if (localStorage.getItem('token') !== null) {
+//             setIsAuth(true);
+//         }
+//     }, []);
 
-export default Navbar;
+//     return (
+//         <Navbar bg="dark" variant="dark">
+//             <Container>
+//                 <Navbar.Brand href="#">Onboarding</Navbar.Brand>
+//                 <Nav className="me-auto">
+//                     {isAuth === true ? (
+//                         <Fragment>
+//                             {' '}
+//                             <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
+//                             <Nav.Link href='/logout'>Logout</Nav.Link>
+//                         </Fragment>
+//                     ) : (
+//                         <Fragment>
+//                             <Nav.Link href='/login'>Login</Nav.Link>
+//                             <Nav.Link href='/signup'>Registerlol</Nav.Link>
+//                         </Fragment>
+//                     )}
+//                 </Nav>
+//             </Container>
+//         </Navbar>
+//     );
+// };
+
+// export default MyNavbar;
