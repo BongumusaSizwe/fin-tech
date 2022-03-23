@@ -1,50 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { Card, CardGroup, Container, Row, Col, ListGroupItem, ListGroup } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
+import {Container } from 'react-bootstrap'
 import CustomerCard from '../../components/customer/CustomerCard';
 
 
 
 const Dashboard = () => {
-
-    // ***************************************************************************//
     //mock api
-    const customerAPI = [
-        {
-            customer_photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-            first_name: "Customer One",
-            email: "customer1@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-            first_name: "Customer Two",
-            email: "customer2@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-            first_name: "Customer Three",
-            email: "customer3@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-            first_name: "Customer Four",
-            email: "customer4@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-            first_name: "Customer Five",
-            email: "customer5@gmail.com",
-            status: "pending"
-        },
-        
-    ]
-
-
-
-
     const [userName, setUserName] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -83,9 +44,7 @@ const Dashboard = () => {
                 overflowX: 'hidden',
                 background: '#C4C4C4'
             }}>
-
             <CustomerCard />
-
             </Container>
         </main>
     );

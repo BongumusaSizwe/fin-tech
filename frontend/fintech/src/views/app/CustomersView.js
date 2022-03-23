@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Fragment} from 'react';
 
+
+
 const CustomersView = () => {
     const [loading, setLoading] = useState(true);
 

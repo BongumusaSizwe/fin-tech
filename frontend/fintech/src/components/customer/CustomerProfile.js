@@ -1,66 +1,46 @@
-import React from "react";
-import { ListGroup } from "react-bootstrap";
-// import { useState } from "react";
-import { Card } from "react-bootstrap";
-import './Box.css'
-const Customerprofile = () => {
-    //mock api
-    const customerAPI = [
-        {
-            customer_photo: "http://localhost:8000/uploads/customer1_dXRj6V0.png",
-            first_name: "Customer One",
-            email: "customer1@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "http://localhost:8000/uploads/customer1_dXRj6V0.png",
-            first_name: "Customer Two",
-            email: "customer2@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "http://localhost:8000/uploads/customer1_dXRj6V0.png",
-            first_name: "Customer Three",
-            email: "customer3@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "http://localhost:8000/uploads/customer1_dXRj6V0.png",
-            first_name: "Customer Four",
-            email: "customer4@gmail.com",
-            status: "pending"
-        },
-        {
-            customer_photo: "http://localhost:8000/uploads/customer1_dXRj6V0.png",
-            first_name: "Customer Five",
-            email: "customer5@gmail.com",
-            status: "pending"
-        },
+import { Card, ListGroup, Container } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import mockAPI from '../../common/mockAPI';
+import './Profile.css'
 
-    ]
+const CustomerProfile = () => {
+    const { email } = useParams();
+    const profile = mockAPI.filter(profile => profile.email === email);
+    return (
+        <>
+            <main >
+                <header>
+                    <h3>Onboard Customers</h3>
+                </header>
+                <Container fluid style={{
+                    position: 'relative',
+                    width: '875px',
+                    height: '480px',
+                    left: '130px',
+                    top: '10px',
+                    overflowX: 'hidden',
+                    background: '#C4C4C4'
+                }}>
+                    <div className='grid'>
+                        {profile.map(card => (
+                            <Card style={{ width: "10px" }} className="box">
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Header>{card.first_name}</Card.Header>
+                                    <ListGroup>
+                                        <ListGroup.Item>Email: {card.email}</ListGroup.Item>
+                                        <ListGroup.Item>Date of Birth: {card.dob}</ListGroup.Item>
+                                        <ListGroup.Item>Country: {card.country}</ListGroup.Item>
+                                        <ListGroup.Item>Status: {card.status}</ListGroup.Item>
+                                    </ListGroup>
+                                </Card.Body>
+                            </Card>
+                        ))}
+                    </div>
+                </Container>
+            </main>
+        </>
+    );
+}
 
-    const renderCard = (card, index) => {
-        return (
-            <Card style={{ width: "10px" }} key={index} className="box">
-                <Card.Img variant="top" src="holder.js/100px180" src={card.customer_photo} />
-                <Card.Body>
-                    <Card.Header>{card.first_name}</Card.Header>
-                    <ListGroup>
-                        <ListGroup.Item>Email: {card.email}</ListGroup.Item>
-                        <ListGroup.Item>Status: {card.status}</ListGroup.Item>
-                        <ListGroup.Item></ListGroup.Item>
-                    </ListGroup>
-                    {/* <a href= "#" class="stretched-link"></a> */}
-                    <button className="stretched-link" style={{ 
-                        background: 'transparent',
-                        border: 'none',
-                        fontSize: '0'
-                        }}></button>
-                </Card.Body>
-            </Card>
-        );
-    };
-    return <div className="grid">{customerAPI.map(renderCard)}</div>
-};
-
-export default Customerprofile;
+export default CustomerProfile;

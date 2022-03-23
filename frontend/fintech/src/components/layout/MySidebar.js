@@ -12,6 +12,7 @@ import {
 } from 'react-pro-sidebar';
 
 import 'react-pro-sidebar/dist/css/styles.css'
+import { Link } from 'react-router-dom';
 import "./Header.css";
 
 const MySidebar = () => {
@@ -50,7 +51,7 @@ const MySidebar = () => {
                             </SidebarHeader>
                             <SidebarContent>
                                 <Menu>
-                                    <MenuItem>Customer List</MenuItem>
+                                    <MenuItem><Link to = "/dashboard" >Customer List</Link></MenuItem>
                                     <MenuItem>Onboard Customer</MenuItem>
                                 </Menu>
                             </SidebarContent>
@@ -65,7 +66,7 @@ const MySidebar = () => {
 
                     <Navbar.Brand href="#">Onboarding</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href='/login'>Logins</Nav.Link>
+                        <Nav.Link href='/login'>Login</Nav.Link>
                         <Nav.Link href='/signup'>Register</Nav.Link>
                     </Nav>
                 </Fragment>
