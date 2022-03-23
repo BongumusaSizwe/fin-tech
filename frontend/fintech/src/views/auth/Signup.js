@@ -1,15 +1,16 @@
-import React, {useState, useEffect } from "react";
-
-const Signup =() => {
+import React, { useState, useEffect } from "react";
+import { Row, Col, Form, Button } from "react-bootstrap";
+const Signup = () => {
     const [first_name, setFirstName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirm_password, setConfirmPassword] = useState('');
+    const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
     const [errors, setErrors] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    const [error_message, setErrorMessage] = useState('Signup Unsuccessful')
+    
     useEffect(() => {
-        if (localStorage.getItem('token') !== null){
+        if (localStorage.getItem('token') !== null) {
             window.location.replace('http://localhost:3000/dashboard');
         } else {
             setLoading(false);
@@ -18,81 +19,114 @@ const Signup =() => {
 
     const onSubmit = e => {
         e.preventDefault();
-        
+
         const user = {
             first_name: first_name,
             email: email,
-            password: password,
-            confirm_password: confirm_password,
+            password1: password1,
+            password2: password2,
         };
 
-        fetch('http://127.0.0.1:8000/authentication/register/',{
+        fetch('http://127.0.0.1:8000/api/users/auth/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
         })
-        .then(res=> res.json())
-        .then(data=> {
-            if(data.key){
-                localStorage.clear();
-                localStorage.setItem('token', data.key);
-                window.location.replace('http://localhost:3000/dashboard')
-            } else {
-                setFirstName('');
-                setEmail('');
-                setPassword('');
-                setConfirmPassword('');
-                localStorage.clear();
-                setErrors(true);
-            }
-        });
+            .then(res => res.json())
+            .then(data => {
+                if (data.key) {
+                    localStorage.clear();
+                    localStorage.setItem('token', data.key);
+                    window.location.replace('http://localhost:3000/dashboard')
+                } else {
+                    setFirstName('');
+                    setEmail('');
+                    setPassword1('');
+                    setPassword2('');
+                    localStorage.clear();
+                    setErrors(true);
+                    if(data.email){
+                        setErrorMessage("A user is already registered with this e-mail address.")
+                    }
+                }
+            });
     };
 
     return (
         <div>
             {loading === false && <h1>Signup</h1>}
-            {errors === true && <h2>Signup unsuccessful</h2>}
-            <form onSubmit={onSubmit}>
-            <label htmlFor="text">Name: </label><br />
-                <input 
-                    name='first_name'
-                    type='text'
-                    value={first_name}
-                    onChange={e => setFirstName(e.target.value)}
-                    required
-                />{' '}
-                <br />
-                <label htmlFor="email">Email: </label> <br />
-                <input 
-                    name='email'
-                    type='email'
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required
-                />{' '}
-                <br />
-                <label htmlFor="password">Password: </label><br />
-                <input
-                    name='password'
-                    type='password'
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required
-                />{' '}
-                <br />
-                <label htmlFor="confirm_password">Confirm Password: </label><br />
-                <input
-                    name='confirm_password'
-                    type='password'
-                    value={confirm_password}
-                    onChange={e => setConfirmPassword(e.target.value)}
-                    required
-                />{' '}
-                <br />
-                <input type='submit' value='Signup'/>
-            </form>
+            {errors === true && <h3>{error_message}</h3>}
+            <Form onSubmit={onSubmit}>
+                <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+                    <Form.Label column sm={2}>
+                        Name
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            name='first_name'
+                            type='text'
+                            value={first_name}
+                            placeholder = 'Name'
+                            onChange={e => setFirstName(e.target.value)}
+                            required />
+                    </Col>
+                </Form.Group>{' '}
+
+                <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+                    <Form.Label column sm={2}>
+                        Email
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            type="email"
+                            placeholder="Email"
+                            name='email'
+                            value={email}
+                            required
+                            onChange={e => setEmail(e.target.value)} />
+                    </Col>
+                </Form.Group>{' '}
+
+                <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
+                    <Form.Label column sm={2}>
+                        Password
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            name='password1'
+                            value={password1}
+                            required
+                            onChange={e => setPassword1(e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>{' '}
+
+                <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
+                    <Form.Label column sm={2}>
+                        Confirm Password
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            type="password"
+                            placeholder="Confirm Password"
+                            name='password2'
+                            value={password2}
+                            required
+                            onChange={e => setPassword2(e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>{' '}
+
+                <Form.Group as={Row} className="mb-3">
+                    <Col sm={{ span: 10, offset: 2 }}>
+                        <Button type="submit" value='Login'>Sign in</Button>
+                    </Col>
+                </Form.Group>
+            </Form>
         </div>
     );
 };

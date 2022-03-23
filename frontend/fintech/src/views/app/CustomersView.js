@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment} from 'react';
 
-const Logout = () => {
+
+const CustomersView = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -13,7 +14,6 @@ const Logout = () => {
 
     const handleLogout = e => {
         e.preventDefault();
-
         fetch('http://127.0.0.1:8000/api/users/auth/logout/', {
             method: 'POST',
             headers: {
@@ -41,4 +41,4 @@ const Logout = () => {
         </div>
     );
 };
-export default Logout;
+export default CustomersView;
