@@ -3,7 +3,6 @@ import {Container } from 'react-bootstrap'
 import CustomerCard from '../../components/customer/CustomerCard';
 
 
-
 const Dashboard = () => {
     //mock api
     const [userName, setUserName] = useState('');

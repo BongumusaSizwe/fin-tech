@@ -51,12 +51,12 @@ const MySidebar = () => {
                             </SidebarHeader>
                             <SidebarContent>
                                 <Menu>
-                                    <MenuItem><Link to = "/dashboard" >Customer List</Link></MenuItem>
+                                    <MenuItem><Link to ="/dashboard" />Customer List</MenuItem>
                                     <MenuItem>Onboard Customer</MenuItem>
                                 </Menu>
                             </SidebarContent>
                             <SidebarFooter>
-                                <MenuItem>Logout</MenuItem>
+                                <MenuItem><Link to ="/logout" />Logout</MenuItem>
                             </SidebarFooter>
                         </ProSidebar>
                     </div>

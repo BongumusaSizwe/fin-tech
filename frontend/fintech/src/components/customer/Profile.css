@@ -1,12 +1,9 @@
 .box {
-    /* margin: 30px; */
-    left: 200px;
-    top: 1px;
-    align-content: center;
+    margin: 20px;
   }
   
   .grid {
-    min-height: 100%;
+    min-height: 20%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;

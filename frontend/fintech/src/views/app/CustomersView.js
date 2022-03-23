@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment} from 'react';
 
 
-
 const CustomersView = () => {
     const [loading, setLoading] = useState(true);
 
@@ -15,8 +14,6 @@ const CustomersView = () => {
 
     const handleLogout = e => {
         e.preventDefault();
-
-        // must fetch customers list
         fetch('http://127.0.0.1:8000/api/users/auth/logout/', {
             method: 'POST',
             headers: {
