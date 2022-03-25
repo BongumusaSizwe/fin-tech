@@ -6,6 +6,7 @@ import './Profile.css'
 const CustomerProfile = () => {
     const { email } = useParams();
     const profile = mockAPI.filter(profile => profile.email === email);
+    console.log(profile)
     return (
         <>
             <main >
@@ -17,13 +18,13 @@ const CustomerProfile = () => {
                     width: '875px',
                     height: '480px',
                     left: '130px',
-                    top: '10px',
                     overflowX: 'hidden',
+                    top: '10px',
                     background: '#C4C4C4'
                 }}>
                     <div className='grid'>
                         {profile.map(card => (
-                            <Card style={{ width: "10px" }} className="box">
+                            <Card style={{ width: "4px" }} className="pbox">
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Header>{card.first_name}</Card.Header>

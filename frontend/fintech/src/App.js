@@ -7,7 +7,9 @@ import Dashboard from './views/app/Dashboard';
 import MySidebar from './components/layout/MySidebar'
 import CustomerCard from './components/customer/CustomerCard';
 import CustomerProfile from './components/customer/CustomerProfile';
-
+import CustomerForm from './views/app/CustomerForm/CustomerForm';
+import StepOne from './views/app/CustomerForm/StepOne';
+import StepTwo from './views/app/CustomerForm/StepTwo';
 
 const App = () => {
   
@@ -16,6 +18,8 @@ const App = () => {
       <Router>
         <MySidebar />
         <Routes>
+          <Route path='/steptwo' element={<StepTwo/>} exact/>
+          <Route path='/stepone' element={<StepOne/>} exact/>
           <Route path='/login' element={<Login/>} exact />
           <Route path='/signup' element={<Signup/>} exact />
           <Route path='/logout' element={<Logout/>} extact/>

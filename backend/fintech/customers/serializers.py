@@ -6,6 +6,7 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = (
+            'admin',
             'email',
             'first_name',
             'dob',

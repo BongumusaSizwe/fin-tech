@@ -1,5 +1,6 @@
-.box {
-    margin: 20px;
+.pbox {
+    margin: 10px;
+    left: 40%; 
   }
   
   .grid {

@@ -176,3 +176,7 @@ CORS_ORIGIN_WHITELIST = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 SECURE_SSL_REDIRECT = False
+
+# email sent mock
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
