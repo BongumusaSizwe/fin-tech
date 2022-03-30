@@ -1,7 +1,8 @@
-# Create your views here.
 from rest_framework.response import Response
 from customers.models import Customer
 from customers.serializers import CustomerInitRegSerializer, CustomerSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework import status
 from django.views.decorators.csrf import csrf_exempt
 from .tokens import TokenGenerator
@@ -9,10 +10,6 @@ from django.core.mail import send_mail
 from rest_framework import viewsets
 import time
 
-from rest_framework.permissions import IsAuthenticated
-# TODO: Remove this and its related contents
-
-# customer crud operations
 # TODO: Change to customerclientview, for initialing customer registration and also editing
 class ClientView(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -55,13 +52,21 @@ class ClientView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-@csrf_exempt
+# @csrf_exempt
 class CustomerView(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
 
-    # def update(self, request, pk = None):
+    # def list(self, request):
+    #     pass
 
+    def update(self, request, pk):
+        customer = self.get_object()
+        serializer = CustomerSerializer(data = request.data)
+
+        if serializer.is_valid():
+            customer.save()
 
 
 

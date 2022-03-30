@@ -10,6 +10,7 @@ import django.conf.urls as curls
 
 router = routers.DefaultRouter()
 router.register(r'customers', views.ClientView, 'customer')
+router.register(r'completeregistration', views.CustomerView, 'completeregistration')
 
 
 urlpatterns = [
