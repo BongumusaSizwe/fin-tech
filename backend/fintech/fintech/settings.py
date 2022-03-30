@@ -12,22 +12,23 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-from re import T
+
+from dotenv import load_dotenv
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fdkfr(gu&pli8q8813va$1*ajh=&%6u9tvs#!%iy&mjxl#cgn*'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,15 +38,14 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'allauth',
-    'rest_framework.authtoken', # new
+    'rest_framework.authtoken',
     'corsheaders',
     'rest_framework',
     'django.contrib.sites', 
-    'allauth.account', # new
-    # 'authentication',
+    'allauth.account',
     'rest_auth',
     'rest_auth.registration',
-
+    'django_extensions',
     'users',
     'customers'
 ]
@@ -92,9 +92,13 @@ ACCOUNT_FIRST_NAME_REQUIRED= True
 
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-    ]
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES' : (
+        'rest_framework.permissions.IsAdminUser'
+    ),
 }
 
 ROOT_URLCONF = 'fintech.urls'

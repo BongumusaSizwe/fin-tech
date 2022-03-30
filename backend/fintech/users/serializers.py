@@ -8,7 +8,6 @@ from .models import CustomUser
 
 class CustomRegisterSerializer(RegisterSerializer):
     first_name = serializers.CharField(max_length = 150, style={'input_type': 'text'})
-
     def get_cleaned_data(self):
         super(CustomRegisterSerializer, self).get_cleaned_data()
         return {
