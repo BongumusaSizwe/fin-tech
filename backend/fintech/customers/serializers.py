@@ -41,5 +41,5 @@ class SetCustomerStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = (
-            'status'
+            'status',
         )

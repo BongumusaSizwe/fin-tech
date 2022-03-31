@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from customers.models import Customer
-from customers.serializers import CustomerInitRegSerializer, CustomerSerializer
+from customers.serializers import CustomerInitRegSerializer, CustomerSerializer, SetCustomerStatusSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import AllowAny
 from rest_framework import status
@@ -65,7 +65,7 @@ class CustomerView(viewsets.ModelViewSet):
         return super().partial_update(request)
 
 class ClientStatusView(viewsets.ModelViewSet):
-    serializer_class = CustomerSerializer
+    serializer_class = SetCustomerStatusSerializer
     queryset = Customer.objects.all()
 
     def partial_update(self, request, pk = None):
