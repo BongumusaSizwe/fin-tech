@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'django_extensions',
+    'django_countries',
     'users',
     'customers'
 ]
@@ -62,11 +63,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
-
-# EMAIL_BACKEND = (
-#     "django.contrib.auth.backends.ModelBackend",
-#     "allauth.account.auth_backends.AuthenticationBackend",
-# )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

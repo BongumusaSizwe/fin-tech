@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from customers.models import Customer, User
+from django_countries.serializers import CountryFieldMixin
 
 
 # client side, initialize customer registration
@@ -12,12 +13,15 @@ class CustomerInitRegSerializer(serializers.ModelSerializer):
         
 
 # customer side: complete registration initialized by the customer
-class CustomerSerializer(serializers.ModelSerializer):
-    client = serializers.ReadOnlyField(source='client.email')
+class CustomerSerializer(CountryFieldMixin, serializers.ModelSerializer):
+    email = serializers.ReadOnlyField()
+    first_name = serializers.ReadOnlyField()
+    status = serializers.ReadOnlyField()
+    is_active = serializers.ReadOnlyField()
+
     class Meta:
         model = Customer
         fields = (
-            'client',
             'email',
             'first_name',
             'status',
@@ -28,12 +32,14 @@ class CustomerSerializer(serializers.ModelSerializer):
             'phone_number',
             'address',
             'occupation',
-            'customer_photo',
-            'customer_video'
+            'passport_photo',
+            'customer_video',
+            'is_active',
         )
 
-# class UserSerializer(serializers.ModelSerializer):
-#     customers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-#     class Meta:
-#         model = User
-#         fields = ['id', 'email', 'customers']
+class SetCustomerStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = (
+            'status'
+        )
