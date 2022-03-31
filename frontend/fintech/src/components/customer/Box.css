@@ -1,5 +1,5 @@
 .box {
-  margin: 20px;
+  margin: 1%;
 }
 
 .grid {
@@ -10,7 +10,7 @@
 }
 
 .grid > div {
-  flex-basis: calc(50% - 185px);
+  flex-basis: calc(27%);
 }
 
 .boxy:hover {

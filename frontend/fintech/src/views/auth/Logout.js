@@ -5,7 +5,7 @@ const Logout = () => {
 
     useEffect(() => {
         if(localStorage.getItem('token') == null){
-            window.location.replace('http://localhost:3000/login');
+            window.location.replace('http://localhost:3000/dashboard');
         }else{
             setLoading(false);
         }

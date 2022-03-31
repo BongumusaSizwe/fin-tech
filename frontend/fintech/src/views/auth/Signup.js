@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 const Signup = () => {
     const [first_name, setFirstName] = useState('');
     const [email, setEmail] = useState('');
@@ -55,7 +55,7 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <Container>
             {loading === false && <h1>Signup</h1>}
             {errors === true && <h3>{error_message}</h3>}
             <Form onSubmit={onSubmit}>
@@ -127,7 +127,7 @@ const Signup = () => {
                     </Col>
                 </Form.Group>
             </Form>
-        </div>
+        </Container>
     );
 };
 

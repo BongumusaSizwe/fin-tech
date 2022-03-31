@@ -11,28 +11,30 @@ import StepOne from './views/app/CustomerForm/StepOne';
 import StepTwo from './views/app/CustomerForm/StepTwo';
 import StepThree from './views/app/CustomerForm/StepThree';
 import Final from './views/app/CustomerForm/Final';
+import Layout from './components/layout/Layout';
 
 const App = () => {
-  
-  return(
-    <div className='App'>
-      <Router>
-        <MySidebar />
-        <Routes>
-          <Route path='/thankyou' element={<Final/>} exact/> 
-          <Route path='/stepthree' element={<StepThree/>} exact/>
-          <Route path='/steptwo' element={<StepTwo/>} exact/>
-          <Route path='/stepone' element={<StepOne/>} exact/>
-          <Route path='/login' element={<Login/>} exact />
-          <Route path='/signup' element={<Signup/>} exact />
-          <Route path='/logout' element={<Logout/>} extact/>
-          <Route path='/dashboard' element={<Dashboard/>} exact/>
-          <Route path='/sidebar' element={<MySidebar/>} exact/>
-          <Route path='/customers' element={<CustomerCard/>}  exact/>
-          <Route path='/customerprofile/:email' element = {<CustomerProfile/>}/>
-        </Routes>
-      </Router>
-    </div>
-  ) 
+
+    return (
+        <div className='App'>
+            <Router>
+                <Layout />
+                <Routes>
+                    <Route path='/sidebar' element={<MySidebar />} exact />
+                    <Route path='/login' element={<Login />} exact />
+                    <Route path='/signup' element={<Signup />} exact />
+                    <Route path='/logout' element={<Logout />} extact />
+                    {/* <Route path='/dashboard' element={<Dashboard />} exact /> */}
+                    {/* <Route path='/sidebar' element={<MySidebar />} exact /> */}
+                    <Route path='/customers' element={<CustomerCard />} exact />
+                    <Route path='/thankyou' element={<Final />} exact />
+                    <Route path='/stepthree' element={<StepThree />} exact />
+                    <Route path='/steptwo' element={<StepTwo />} exact />
+                    <Route path='/stepone' element={<StepOne />} exact />
+                    <Route path='/customerprofile/:email' element={<CustomerProfile />} />
+                </Routes>
+            </Router>
+        </div>
+    )
 }
 export default App;

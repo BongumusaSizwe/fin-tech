@@ -1,11 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { Nav, Navbar, Container } from 'react-bootstrap';
-
+import React, { useState, useEffect} from 'react';
 import {
     ProSidebar,
     Menu,
     SidebarFooter,
-    SubMenu,
     SidebarHeader,
     SidebarContent,
     MenuItem
@@ -37,43 +34,27 @@ const MySidebar = () => {
                     setLoading(false);
                 });
         }
+        else{
+            window.location.replace('http://localhost:3000/login')
+        }
     }, []);
-
     return (
-        <Container fluid>
-            {isAuth === true ? (
-                <Fragment>
-                    {' '}
-                    <div id="header">
-                        <ProSidebar>
-                            <SidebarHeader>
-                                <p>Welcome {userName}</p>
-                            </SidebarHeader>
-                            <SidebarContent>
-                                <Menu>
-                                    <MenuItem><Link to ="/dashboard" />Customer List</MenuItem>
-                                    <MenuItem>Onboard Customer</MenuItem>
-                                </Menu>
-                            </SidebarContent>
-                            <SidebarFooter>
-                                <MenuItem><Link to ="/logout" />Logout</MenuItem>
-                            </SidebarFooter>
-                        </ProSidebar>
-                    </div>
-                </Fragment>
-            ) : (
-                <Fragment>
 
-                    <Navbar.Brand href="#">Onboarding</Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link href='/login'>Login</Nav.Link>
-                        <Nav.Link href='/signup'>Register</Nav.Link>
-                    </Nav>
-                </Fragment>
-            )}
-        </Container>
+           <ProSidebar id="header">
+                <SidebarHeader>
+                    <p>Welcome {userName}</p>
+                </SidebarHeader>
+                <SidebarContent>
+                    <Menu>
+                        <MenuItem><Link to="/dashboard" />Customer List</MenuItem>
+                    </Menu>
+                        <MenuItem>Onboard Customer</MenuItem>
+                </SidebarContent>
+                <SidebarFooter>
+                    <MenuItem><Link to="/logout" />Logout</MenuItem>
+                </SidebarFooter>
+            </ProSidebar>
     );
-
 };
 
 export default MySidebar;

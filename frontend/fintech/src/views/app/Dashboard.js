@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Container } from 'react-bootstrap'
+import {Container , Col, Row} from 'react-bootstrap'
 import CustomerCard from '../../components/customer/CustomerCard';
 
 
@@ -30,22 +30,14 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <main >
-            <header>
+        <div>
+            <Row>
                 <h3>Onboard Customers</h3>
-            </header>
-            <Container fluid style={{
-                position: 'relative',
-                width: '875px',
-                height: '480px',
-                left: '130px',
-                top: '10px',
-                overflowX: 'hidden',
-                background: '#C4C4C4'
-            }}>
+            </Row>
+            <Row>
             <CustomerCard />
-            </Container>
-        </main>
+            </Row>
+        </div>
     );
 };
 

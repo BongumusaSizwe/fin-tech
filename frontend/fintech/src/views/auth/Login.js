@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Form, Col } from 'react-bootstrap';
+import { Button, Row, Form, Col, Container } from 'react-bootstrap';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -9,7 +10,8 @@ const Login = () => {
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            window.location.replace('https://localhost:3000/dashboard');
+            // window.location.replace('https://localhost:3000/dashboard');
+            console.log("logged in")
         } else {
             setLoading(false);
         }
@@ -46,7 +48,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <Container>
             {loading === false && <h1>Login</h1>}
             {errors === true && <h2>Check your login details carefully.</h2>}
             {loading === false && (
@@ -89,7 +91,7 @@ const Login = () => {
                     </Form.Group>
                 </Form>
             )}
-        </div>
+        </Container>
     );
 };
 

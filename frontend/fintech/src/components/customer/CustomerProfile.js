@@ -1,4 +1,4 @@
-import { Card, ListGroup, Container } from 'react-bootstrap'
+import { Card, ListGroup, Container, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import mockAPI from '../../common/mockAPI';
 import './Profile.css'
@@ -9,37 +9,24 @@ const CustomerProfile = () => {
     console.log(profile)
     return (
         <>
-            <main >
-                <header>
-                    <h3>Onboard Customers</h3>
-                </header>
-                <Container fluid style={{
-                    position: 'relative',
-                    width: '875px',
-                    height: '480px',
-                    left: '130px',
-                    overflowX: 'hidden',
-                    top: '10px',
-                    background: '#C4C4C4'
-                }}>
-                    <div className='grid'>
-                        {profile.map(card => (
-                            <Card style={{ width: "4px" }} className="pbox">
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Header>{card.first_name}</Card.Header>
-                                    <ListGroup>
-                                        <ListGroup.Item>Email: {card.email}</ListGroup.Item>
-                                        <ListGroup.Item>Date of Birth: {card.dob}</ListGroup.Item>
-                                        <ListGroup.Item>Country: {card.country}</ListGroup.Item>
-                                        <ListGroup.Item>Status: {card.status}</ListGroup.Item>
-                                    </ListGroup>
-                                </Card.Body>
-                            </Card>
-                        ))}
-                    </div>
-                </Container>
-            </main>
+            <Row>
+                <div className='grid'>
+                    {profile.map(card => (
+                        <Card style={{ width: "4px" }} className="pbox">
+                            <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card.Body>
+                                <Card.Header>{card.first_name}</Card.Header>
+                                <ListGroup>
+                                    <ListGroup.Item>Email: {card.email}</ListGroup.Item>
+                                    <ListGroup.Item>Date of Birth: {card.dob}</ListGroup.Item>
+                                    <ListGroup.Item>Country: {card.country}</ListGroup.Item>
+                                    <ListGroup.Item>Status: {card.status}</ListGroup.Item>
+                                </ListGroup>
+                            </Card.Body>
+                        </Card>
+                    ))}
+                </div>
+            </Row>
         </>
     );
 }

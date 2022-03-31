@@ -11,7 +11,7 @@ const CustomerCard = () => {
     // const [modalShow, setModalShow] = React.useState(false);
     const renderCard = (card, index) => {
         return (
-            <Card style={{ width: "10px" }} key={index} className="box">
+            <Card style={{ width: "50px" }} key={index} className="box">
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                     <Card.Header>{card.first_name}</Card.Header>
