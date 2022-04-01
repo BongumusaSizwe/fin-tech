@@ -4,7 +4,6 @@ import CustomerCard from '../../components/customer/CustomerCard';
 
 
 const Dashboard = () => {
-    //mock api
     const [userName, setUserName] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -30,14 +29,17 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div>
+        <>
+        <Col md={4}></Col>
+        <Col md={8}>
             <Row>
                 <h3>Onboard Customers</h3>
             </Row>
             <Row>
             <CustomerCard />
             </Row>
-        </div>
+        </Col>
+        </>
     );
 };
 

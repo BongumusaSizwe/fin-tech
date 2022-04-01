@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     ProSidebar,
     Menu,
@@ -13,13 +13,11 @@ import { Link } from 'react-router-dom';
 import "./Header.css";
 
 const MySidebar = () => {
-    const [isAuth, setIsAuth] = useState(false);
     const [userName, setUserName] = useState('');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            setIsAuth(true);
             fetch('http://127.0.0.1:8000/api/users/auth/user/', {
                 method: 'GET',
                 headers: {
@@ -34,26 +32,28 @@ const MySidebar = () => {
                     setLoading(false);
                 });
         }
-        else{
+        else {
             window.location.replace('http://localhost:3000/login')
         }
     }, []);
     return (
 
-           <ProSidebar id="header">
-                <SidebarHeader>
-                    <p>Welcome {userName}</p>
-                </SidebarHeader>
-                <SidebarContent>
-                    <Menu>
-                        <MenuItem><Link to="/dashboard" />Customer List</MenuItem>
-                    </Menu>
-                        <MenuItem>Onboard Customer</MenuItem>
-                </SidebarContent>
-                <SidebarFooter>
+        <ProSidebar id="header">
+            <SidebarHeader>
+                <p>Welcome {userName}</p>
+            </SidebarHeader>
+            <SidebarContent>
+                <Menu>
+                    <MenuItem><Link to="/dashboard" />Customer List</MenuItem>
+                    <MenuItem><Link to="/boardingform" />Onboard Customer</MenuItem>
+                </Menu>
+            </SidebarContent>
+            <SidebarFooter>
+                <Menu>
                     <MenuItem><Link to="/logout" />Logout</MenuItem>
-                </SidebarFooter>
-            </ProSidebar>
+                </Menu>
+            </SidebarFooter>
+        </ProSidebar>
     );
 };
 

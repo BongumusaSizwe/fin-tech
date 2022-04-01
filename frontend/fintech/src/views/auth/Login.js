@@ -10,8 +10,7 @@ const Login = () => {
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            // window.location.replace('https://localhost:3000/dashboard');
-            console.log("logged in")
+            window.location.replace('https://localhost:3000/dashboard');
         } else {
             setLoading(false);
         }

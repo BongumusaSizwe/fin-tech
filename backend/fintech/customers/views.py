@@ -1,16 +1,17 @@
+from urllib import request
 from rest_framework.response import Response
 from customers.models import Customer
 from customers.serializers import CustomerInitRegSerializer, CustomerSerializer, SetCustomerStatusSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import AllowAny
-from rest_framework import status
+from rest_framework import status, generics
 from django.core.mail import send_mail
 from rest_framework import viewsets
+import logging
 
 class ClientView(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = CustomerInitRegSerializer
-    queryset = Customer.objects.all()
 
     def create(self, request):
         customer_serializer = CustomerInitRegSerializer(data = request.data)
@@ -40,31 +41,40 @@ class ClientView(viewsets.ModelViewSet):
         return Response(customer_serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
     def list(self, request):
-        queryset = Customer.objects.all()
+        user = self.request.user
+        queryset = Customer.objects.filter(user = user)
         serializer = CustomerSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
+class ExistingCustomerView(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CustomerSerializer
+    
+    def get_queryset(self):
+        user= self.request.user
+        customers = Customer.objects.filter(user = user)
+        return customers.filter(is_active = True)
+        # return customers
+
 class CustomerView(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
 
-
-    def partial_update(self, request, pk = None):
+    def partial_update(self, request, pk):
         customer = self.get_object()
         serializer = CustomerSerializer(data = request.data)
-
         if serializer.is_valid():
-            is_active = serializer.validated_data.get('is_active')
-            if is_active:
-                return Response({'errors': is_active}, status = status.HTTP_400_BAD_REQUEST)
-            data  = serializer.data
-            data['is_active'] = True
-            serializer.save()
-            return Response(data, status= status.HTTP_202_ACCEPTED)
-        return super().partial_update(request)
+            customer.save()
+            return Response(serializer.data, status= status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
 
 class ClientStatusView(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     serializer_class = SetCustomerStatusSerializer
     queryset = Customer.objects.all()
 

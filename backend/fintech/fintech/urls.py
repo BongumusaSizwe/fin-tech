@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 import django.conf.urls as curls
 
 router = routers.DefaultRouter()
-router.register(r'customers', views.ClientView, 'customer')
+router.register(r'customers', views.ExistingCustomerView, 'customer')
 router.register(r'completeregistration', views.CustomerView, 'completeregistration')
 router.register(r'setstatus', views.ClientStatusView, 'setstatus')
 

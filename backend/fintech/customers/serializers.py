@@ -1,3 +1,4 @@
+from email.policy import default
 from rest_framework import serializers
 from customers.models import Customer, User
 from django_countries.serializers import CountryFieldMixin
@@ -14,14 +15,17 @@ class CustomerInitRegSerializer(serializers.ModelSerializer):
 
 # customer side: complete registration initialized by the customer
 class CustomerSerializer(CountryFieldMixin, serializers.ModelSerializer):
+    user_id = serializers.ReadOnlyField()
     email = serializers.ReadOnlyField()
     first_name = serializers.ReadOnlyField()
     status = serializers.ReadOnlyField()
-    is_active = serializers.ReadOnlyField()
-
+    # is_active = serializers.HiddenField(default=True)
+    customer_id = serializers.ReadOnlyField(source='id')
     class Meta:
         model = Customer
         fields = (
+            'user_id',
+            'customer_id',
             'email',
             'first_name',
             'status',

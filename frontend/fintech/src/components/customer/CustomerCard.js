@@ -3,12 +3,31 @@ import { ListGroup } from "react-bootstrap";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './Box.css'
-import mockAPI from "../../common/mockAPI"
-
+import Axios from 'axios'
+import { useState, useEffect } from 'react';
 
 const CustomerCard = () => {
-    // const [show, setShow] = useState(false);
-    // const [modalShow, setModalShow] = React.useState(false);
+    // const { email } = useParams();
+    const [customers, setCustomers] = useState([]);
+    
+    const fetchCustomers = async ()=> {
+        const { data } = await Axios.get(
+            "http://localhost:8000/api/customers/", {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Token ${localStorage.getItem('token')}`
+                }
+            }
+        );
+        const customers = data;
+        setCustomers(customers);
+
+    };
+
+    useEffect(() =>{
+        fetchCustomers();
+    }, []);
+
     const renderCard = (card, index) => {
         return (
             <Card style={{ width: "50px" }} key={index} className="box">
@@ -32,7 +51,7 @@ const CustomerCard = () => {
 
         );
     };
-    return <div className="grid">{mockAPI.map(renderCard)}</div>
+    return <div className="grid">{customers.map(renderCard)}</div>
 };
 
 export default CustomerCard;

@@ -38,9 +38,6 @@ const Layout = () => {
                             <Col md={4} >
                                 <MySidebar />
                             </Col>
-                            <Col md={8}>
-                                <Dashboard />
-                            </Col>
                         </Row>
                     </Container>
                 </Fragment>
